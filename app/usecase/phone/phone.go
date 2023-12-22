@@ -41,6 +41,7 @@ func GetProviders(c echo.Context) (e error) {
 	for _, result := range results {
 
 		data.ID = result.ID
+		data.Code = result.Code
 		data.Name = result.Name
 
 		responseData = append(responseData, data)
@@ -77,8 +78,17 @@ func CreateAutoNumberPhone(c echo.Context, extractToken entity.ExtractToken) (e 
 		autoNumber := result.Code + resultNumber
 		autoProviderID := result.ID
 
+		var encryptedNumber string
+		encryptedNumber, e = sdk.GetAESEncrypted(autoNumber)
+		if e != nil {
+			logger.WithField("error", e.Error()).Error("Error during encryption")
+			e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_INVALID_FORMAT,
+				lg.Language{Bahasa: nil, English: "Error during encryption"}, nil, nil)
+			return
+		}
+
 		params := make(map[string]interface{})
-		params["number"] = autoNumber
+		params["number"] = encryptedNumber
 		params["type"] = resultType
 		params["provider_id"] = autoProviderID
 		params["created_by"] = extractToken.Name
@@ -120,8 +130,16 @@ func CreateNumberPhone(c echo.Context, req entity.PhoneData, extractToken entity
 		return
 	}
 
+	encryptedNumber, e := sdk.GetAESEncrypted(req.Number)
+	if e != nil {
+		logger.WithField("error", e.Error()).Error("Error during encryption")
+		e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_INVALID_FORMAT,
+			lg.Language{Bahasa: nil, English: "Error during encryption"}, nil, nil)
+		return
+	}
+
 	var phoneData entity.PhoneData
-	if phoneData, e = repoPhone.GetNumberPhoneByNumber(c, req.Number); e != nil {
+	if phoneData, e = repoPhone.GetNumberPhoneByNumber(c, encryptedNumber); e != nil {
 		logger.WithField("error", e.Error()).Error("Catch error failure query GetProviderByID")
 		e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_DATABASE,
 			lg.Language{Bahasa: nil, English: "Failure query get GetProviderByID"}, nil, nil)
@@ -161,7 +179,7 @@ func CreateNumberPhone(c echo.Context, req entity.PhoneData, extractToken entity
 	}
 
 	params := make(map[string]interface{})
-	params["number"] = req.Number
+	params["number"] = encryptedNumber
 	params["type"] = getType(intNumber)
 	params["provider_id"] = req.Provider.ID
 	params["created_by"] = extractToken.Name
@@ -201,8 +219,11 @@ func GetNumberPhones(c echo.Context) (e error) {
 	var responseData []entity.PhoneData
 	var data entity.PhoneData
 	for _, result := range results {
+
+		decryptedNumber, _ := sdk.GetAESDecrypted(result.Number)
+
 		data.ID = result.ID
-		data.Number = result.Number
+		data.Number = string(decryptedNumber)
 		data.Type = result.Type
 
 		data.Provider.ID = result.Provider.ID
@@ -258,12 +279,21 @@ func GetNumberPhoneByID(c echo.Context) (e error) {
 		return
 	}
 
+	decryptedNumber, e := sdk.GetAESDecrypted(result.Number)
+	if e != nil {
+		logger.WithField("error", e.Error()).Error("Error during decryption")
+		e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_INVALID_FORMAT,
+			lg.Language{Bahasa: nil, English: "Error during decryption"}, nil, nil)
+		return
+	}
+
 	var data entity.PhoneData
 	data.ID = result.ID
-	data.Number = result.Number
+	data.Number = string(decryptedNumber)
 	data.Type = result.Type
 
 	data.Provider.ID = result.Provider.ID
+	data.Provider.Code = result.Provider.Code
 	data.Provider.Name = result.Provider.Name
 
 	data.CreatedAt = result.CreatedAt
@@ -319,11 +349,44 @@ func UpdateNumberPhone(c echo.Context, req entity.PhoneData, extractToken entity
 	}
 
 	if req.Number != "" {
-		params["number"] = req.Number
+		var encryptedNumber string
+		encryptedNumber, e = sdk.GetAESEncrypted(req.Number)
+		if e != nil {
+			logger.WithField("error", e.Error()).Error("Error during encryption")
+			e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_INVALID_FORMAT,
+				lg.Language{Bahasa: nil, English: "Error during encryption"}, nil, nil)
+			return
+		}
+
+		var phoneData entity.PhoneData
+		if phoneData, e = repoPhone.GetNumberPhoneByNumber(c, encryptedNumber); e != nil {
+			logger.WithField("error", e.Error()).Error("Catch error failure query GetProviderByID")
+			e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_DATABASE,
+				lg.Language{Bahasa: nil, English: "Failure query get GetProviderByID"}, nil, nil)
+			return
+		}
+
+		var emptyPhone entity.PhoneData
+		if phoneData != emptyPhone {
+			logger.Error("Catch error number exist ", req.Number)
+			e = resp.CustomError(c, http.StatusConflict, sdk.ERR_DATA_ALREADY_EXIST,
+				lg.Language{Bahasa: "Nomor Handphone Sudah Ada", English: "Number Phone Already Exist"}, nil, nil)
+			return
+		}
+
+		params["number"] = encryptedNumber
 	}
 
-	if req.Type > 0 {
-		params["type"] = req.Type
+	var intNumber int
+	if intNumber, e = strconv.Atoi(req.Number); e != nil {
+		logger.WithField("error", e.Error()).Info("Bad Request")
+		e = resp.CustomError(c, http.StatusBadRequest, sdk.ERR_PARAM_MISSING,
+			lg.Language{Bahasa: "Bad Request", English: "Bad Request"}, nil, nil)
+		return
+	}
+
+	if intNumber > 0 {
+		params["type"] = getType(intNumber)
 	}
 
 	if req.Provider.ID > 0 {

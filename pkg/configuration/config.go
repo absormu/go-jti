@@ -23,6 +23,8 @@ type Configuration struct {
 	ClientSecret    string `default:"PlatformSecretAbsormu" split_words:"true"`
 	TokenLifeTime   int64  `default:"86400" split_words:"true"`
 	LimitGenerate   int    `default:"25" split_words:"true"`
+	MyKeySecret     string `default:"BackendGoPlatformSecretAbsormu09" split_words:"true"`
+	MyIvSecret      string `default:"SecretAbsormu212" split_words:"true"`
 }
 
 // Config .

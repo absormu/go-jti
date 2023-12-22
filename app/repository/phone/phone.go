@@ -139,7 +139,7 @@ func GetNumberPhoneByID(c echo.Context, id int) (data entity.PhoneData, e error)
 	defer db.Close()
 
 	query := "SELECT pn.id, pn.number, pn.type, " +
-		"p.id, p.name, " +
+		"p.id, p.code, p.name, " +
 		"pn.created_at, pn.created_by, IFNULL(pn.modified_at, ''), IFNULL(pn.modified_by, ''), pn.is_deleted " +
 		"FROM phone_number AS pn " +
 		"LEFT JOIN provider AS p ON pn.provider_id  = p.id " +
@@ -155,7 +155,7 @@ func GetNumberPhoneByID(c echo.Context, id int) (data entity.PhoneData, e error)
 	defer result.Close()
 	for result.Next() {
 		if e = result.Scan(&data.ID, &data.Number, &data.Type,
-			&data.Provider.ID, &data.Provider.Name,
+			&data.Provider.ID, &data.Provider.Code, &data.Provider.Name,
 			&data.CreatedAt, &data.CreatedBy, &data.ModifiedAt, &data.ModifiedBy, &data.IsDeleted); e != nil {
 			return
 		}
