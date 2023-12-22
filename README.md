@@ -1,8 +1,16 @@
 # go-jti
 
+IMPLEMENTASI
+------------
+
+- [ ] Gmail (Sign In With Google)
+- [x] Metode ENCRYPT/DECRYPT
+- [ ] WEB SOCKET
+- [ ] POSTGRE SQL 
+
 INTRODUCTION
 ------------
-* link : github.com/absormu/go-jti
+* [LINK GITHUB](https://www.github.com/absormu/go-jti)
 * DOCUMENTATION API postman collection (folder /docs/go-jti.postman_collection.json)
 * REQUEST & RESPONSE API (folder /docs/Input.md & Output.md)
 * DATABASE (folder /scripts/db_gojti.sql)
@@ -23,7 +31,7 @@ INSTALLATION, CONFIGURATION AND RUNING
  DEMO ONLINE
 ------------
 * authorization (email: absoralvord07@gmail.com, password: meraihmimpi)
-* link
+* [LINK](https://www.absormu.com/)
 
 ## POSTGRES
 ```
