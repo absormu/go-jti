@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "ad5badda-bb7a-4279-95da-027b524d6547",
+		"name": "go-jti",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7150072"
+	},
+	"item": [
+		{
+			"name": "Output",
+			"item": [
+				{
+					"name": "GetNumberPhones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/number-phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"number-phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetNumberPhoneByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/number-phone/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"number-phone",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteNumberPhoneByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/number-phone/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"number-phone",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateNumberPhoneByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"number\": \"081291808448\",\r\n      \"type\": 2,\r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/number-phone/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"number-phone",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Input",
+			"item": [
+				{
+					"name": "GetProviders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/providers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAutoNumber",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzAxMjgyLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZnU4bTNudDRsMzY0N2R2Y2ciLCJ1c2VyX2lkIjoxfQ.qWeY-4oy8tZkBUYKsFEp8yOn7FtoiK7s4w6qfeaUu1I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/auto-number-phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"auto-number-phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateNumberPhone",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"number\": \"081291808445\", \r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9670/go-jti/api/v1/number-phone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9670",
+							"path": [
+								"go-jti",
+								"api",
+								"v1",
+								"number-phone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"absoralvord07@gmail.com\",\n    \"password\": \"meraihmimpi\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9670/go-jti/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9670",
+					"path": [
+						"go-jti",
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"PT. Absor Indonesia\",\n     \"city\": {\n        \"id\": 6\n    },\n    \"email\": \"absor@gmail.com\",\n    \"password\": \"@bs0R212\",\n    \"telephone\": \"0217465768\",\n    \"address\": \"Bandung\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9670/go-auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9670",
+					"path": [
+						"go-auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
