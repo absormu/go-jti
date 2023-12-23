@@ -3,7 +3,7 @@
 IMPLEMENTASI
 ------------
 
-- [ ] Gmail (Sign In With Google)
+- [x] Gmail (Sign In With Google)
 - [x] Metode ENCRYPT/DECRYPT
 - [ ] WEB SOCKET
 - [ ] POSTGRE SQL 
