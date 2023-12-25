@@ -12,7 +12,9 @@ import (
 )
 
 func initHandlers(e *echo.Echo) {
+	e.GET("/ping", handler.PingHandler)
 	root := e.Group(cm.Config.RootURL)
+	root.GET("/ping", handler.PingHandler)
 	root.POST("/api/v1/login", handler.LoginHandler)
 
 	r := e.Group(cm.Config.RootURL)

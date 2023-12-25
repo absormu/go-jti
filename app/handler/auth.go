@@ -13,6 +13,10 @@ import (
 	sdk "github.com/absormu/go-jti/pkg/utils"
 )
 
+func PingHandler(ctx echo.Context) error {
+	return ctx.String(http.StatusOK, "PONG")
+}
+
 func LoginHandler(c echo.Context) (e error) {
 	logger := md.GetLogger(c)
 	logger.Info("handler: LoginHandler")
