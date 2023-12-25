@@ -92,7 +92,7 @@ func CreateAutoNumberPhone(c echo.Context, extractToken entity.ExtractToken) (e 
 		params["type"] = resultType
 		params["provider_id"] = autoProviderID
 		params["created_by"] = extractToken.Name
-		params["created_at"] = time.Now()
+		params["created_at"] = time.Now().UTC().Local().Format("2006-01-02 15:04:05")
 
 		if _, e = repoPhone.CreateNumberPhone(c, params); e != nil {
 			logger.WithField("error", e.Error()).Error("Catch error failure query CreateNumberPhone")
@@ -183,7 +183,7 @@ func CreateNumberPhone(c echo.Context, req entity.PhoneData, extractToken entity
 	params["type"] = getType(intNumber)
 	params["provider_id"] = req.Provider.ID
 	params["created_by"] = extractToken.Name
-	params["created_at"] = time.Now()
+	params["created_at"] = time.Now().UTC().Local().Format("2006-01-02 15:04:05")
 
 	if _, e = repoPhone.CreateNumberPhone(c, params); e != nil {
 		logger.WithField("error", e.Error()).Error("Catch error failure query CreateNumberPhone")

@@ -7,6 +7,7 @@ import (
 
 	"github.com/absormu/go-jti/app/entity"
 	md "github.com/absormu/go-jti/app/middleware"
+	cm "github.com/absormu/go-jti/pkg/configuration"
 	db "github.com/absormu/go-jti/pkg/mariadb"
 	"github.com/labstack/echo/v4"
 	"github.com/sirupsen/logrus"
@@ -106,7 +107,7 @@ func GetNumberPhones(c echo.Context) (results []entity.PhoneData, e error) {
 		"pn.created_at, pn.created_by, IFNULL(pn.modified_at, ''), IFNULL(pn.modified_by, ''), pn.is_deleted " +
 		"FROM phone_number AS pn " +
 		"LEFT JOIN provider AS p ON pn.provider_id  = p.id " +
-		"WHERE pn.is_deleted = 0 ORDER BY pn.id DESC LIMIT 100"
+		"WHERE pn.is_deleted = 0 ORDER BY pn.id DESC LIMIT " + strconv.Itoa(cm.Config.LimitQuery) + ""
 
 	logger.WithFields(logrus.Fields{"query": query}).Info("repository: GetNumberPhones-query")
 
