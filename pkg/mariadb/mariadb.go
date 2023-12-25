@@ -15,7 +15,7 @@ func MariaDBInit() *sql.DB {
 	if cm.Config.IsLocal {
 		db, err = sql.Open("mysql", cm.Config.MariaDBUser+":"+cm.Config.MariaDBPassword+"@tcp("+cm.Config.MariaDBAddr+":"+cm.Config.MariaDBPort+")/"+cm.Config.MariaDBDatabase+"?loc=Asia%2FJakarta")
 	} else {
-		db, err = sql.Open("mysql", cm.Config.MariaDBUserDev+":"+cm.Config.MariaDBPasswordDev+"@tcp("+cm.Config.MariaDBAddrDev+")/"+cm.Config.MariaDBDatabase+"?tls=true&interpolateParams=true&loc=Asia%2FJakarta")
+		db, err = sql.Open("mysql", cm.Config.MariaDBUserDev+":"+cm.Config.MariaDBPasswordDev+"@tcp("+cm.Config.MariaDBAddrDev+")/"+cm.Config.MariaDBDatabaseDev+"?tls=true&interpolateParams=true&loc=Asia%2FJakarta")
 	}
 
 	if err != nil {

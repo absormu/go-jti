@@ -18,7 +18,7 @@ type Configuration struct {
 	MariaDBPort        string `default:"3306" split_words:"true"`
 	MariaDBUser        string `default:"root" split_words:"true"`
 	MariaDBPassword    string `default:"" split_words:"true"`
-	MariaDBDatabase    string `default:"belajar-crud" split_words:"true"`
+	MariaDBDatabase    string `default:"db_gojti" split_words:"true"`
 	LimitQuery         int    `default:"25" split_words:"true"`
 	ClientSecret       string `default:"PlatformSecretAbsormu" split_words:"true"`
 	TokenLifeTime      int64  `default:"86400" split_words:"true"`
@@ -27,8 +27,9 @@ type Configuration struct {
 	MyIvSecret         string `default:"SecretAbsormu212" split_words:"true"`
 	IsLocal            bool   `default:"false" split_words:"true"`
 	MariaDBAddrDev     string `default:"aws.connect.psdb.cloud" split_words:"true"`
-	MariaDBUserDev     string `default:"n6pp26ba35kcp15s8mmi" split_words:"true"`
-	MariaDBPasswordDev string `default:"pscale_pw_wl5R5wLpvKCG1NipXgMzKtoTw73jzOsddvviiMj2LSW" split_words:"true"`
+	MariaDBUserDev     string `default:"xb1bai4uesy0s79ltirn" split_words:"true"`
+	MariaDBDatabaseDev string `default:"belajar-crud" split_words:"true"`
+	MariaDBPasswordDev string `default:"pscale_pw_sjX9vmpUthHAzdvr2Lr9iMc9ETfVaCr5Dc67ul8xHrr" split_words:"true"`
 }
 
 // Config .
