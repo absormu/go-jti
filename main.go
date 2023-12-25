@@ -12,6 +12,7 @@ import (
 )
 
 func initHandlers(e *echo.Echo) {
+	e.GET("/", handler.PingHandler)
 	e.GET("/ping", handler.PingHandler)
 	root := e.Group(cm.Config.RootURL)
 	root.GET("/ping", handler.PingHandler)
