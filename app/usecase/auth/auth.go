@@ -2,6 +2,7 @@ package auth
 
 import (
 	"encoding/base64"
+	"text/template"
 
 	"net/http"
 	"time"
@@ -15,6 +16,7 @@ import (
 	sdk "github.com/absormu/go-jti/pkg/utils"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
+	"github.com/markbates/goth"
 	"github.com/rs/xid"
 )
 
@@ -73,6 +75,55 @@ func Login(c echo.Context, req entity.Auth) (e error) {
 		TokenType:   "bearer",
 		ExpiresIn:   cm.Config.TokenLifeTime,
 	}
+
+	e = resp.CustomError(c, http.StatusOK, sdk.ERR_SUCCESS,
+		lg.Language{Bahasa: "Sukses", English: "Success"}, nil, res)
+	return
+}
+
+func LoginGoogle(c echo.Context, req goth.User) (e error) {
+	logger := md.GetLogger(c)
+	logger.WithField("request", req).Info("usecase: LoginGoogle")
+
+	if req.Email == "" || req.UserID == "" {
+		logger.Error("Catch error missing mandatory parameter")
+		e = resp.CustomError(c, http.StatusBadRequest, sdk.ERR_PARAM_MISSING,
+			lg.Language{Bahasa: nil, English: "Missing mandatory parameter"}, nil, nil)
+		return
+	}
+
+	token := jwt.New(jwt.SigningMethodHS256)
+	claims := token.Claims.(jwt.MapClaims)
+	claims["uid"] = xid.New().String()
+	claims["user_id"] = req.UserID
+	claims["name"] = req.Name
+	claims["email"] = req.Email
+	claims["exp"] = time.Now().Add(time.Duration(cm.Config.TokenLifeTime) * time.Second).Unix()
+
+	// Generate encoded token and send it as response.
+	t, e := token.SignedString([]byte(cm.Config.ClientSecret))
+	if e != nil {
+		logger.WithField("error", e.Error()).Error("Catch error generate encoded token")
+		e = resp.CustomError(c, http.StatusUnauthorized, sdk.ERR_UNAUTHORIZED,
+			lg.Language{Bahasa: nil, English: "Unauthorized"}, nil, nil)
+		return
+	}
+
+	res := entity.OAuthMessage{
+		AccessToken: t,
+		TokenType:   "bearer",
+		ExpiresIn:   cm.Config.TokenLifeTime,
+	}
+
+	t2, e := template.ParseFiles("templates/success.html")
+	if e != nil {
+		logger.WithField("error", e.Error()).Error("Catch error generate encoded token")
+		e = resp.CustomError(c, http.StatusUnauthorized, sdk.ERR_UNAUTHORIZED,
+			lg.Language{Bahasa: nil, English: "Unauthorized"}, nil, nil)
+		return
+	}
+
+	t2.Execute(c.Response().Writer, req)
 
 	e = resp.CustomError(c, http.StatusOK, sdk.ERR_SUCCESS,
 		lg.Language{Bahasa: "Sukses", English: "Success"}, nil, res)

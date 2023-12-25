@@ -90,17 +90,17 @@ func GetNumberPhonesHandler(c echo.Context) (e error) {
 	logger := md.GetLogger(c)
 	logger.Info("handler: GetNumberPhonesHandler")
 
-	extractToken, e := pkgjwt.ExtractToken(c)
-	if e != nil {
-		logger.Error("Catch error extractToken")
-		e = resp.CustomError(c, http.StatusUnauthorized, sdk.ERR_UNAUTHORIZED,
-			lg.Language{Bahasa: nil, English: "Authorization missing"}, nil, nil)
-		return
-	}
+	// extractToken, e := pkgjwt.ExtractToken(c)
+	// if e != nil {
+	// 	logger.Error("Catch error extractToken")
+	// 	e = resp.CustomError(c, http.StatusUnauthorized, sdk.ERR_UNAUTHORIZED,
+	// 		lg.Language{Bahasa: nil, English: "Authorization missing"}, nil, nil)
+	// 	return
+	// }
 
-	logger.WithFields(log.Fields{
-		"extractToken": extractToken,
-	}).Info("ExtractToken")
+	// logger.WithFields(log.Fields{
+	// 	"extractToken": extractToken,
+	// }).Info("ExtractToken")
 
 	e = usecasePhone.GetNumberPhones(c)
 

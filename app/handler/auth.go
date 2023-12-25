@@ -92,8 +92,10 @@ func ProviderCallbackAuthHandler(c echo.Context) (e error) {
 
 	logger.WithFields(log.Fields{"id": user.UserID, "email": user.Email}).Info("handler: ProviderCallbackAuthHandler-Success")
 
-	t, _ := template.ParseFiles("templates/success.html")
-	t.Execute(c.Response().Writer, user)
+	// t, _ := template.ParseFiles("templates/success.html")
+	// t.Execute(c.Response().Writer, user)
+
+	e = usecaseauth.LoginGoogle(c, user)
 
 	return
 }
