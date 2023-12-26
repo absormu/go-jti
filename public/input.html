@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h3 class="text-center mb-4">Home Page</h3>
+                <!-- FORM ADD -->
+                <div class="text-center"> 
+                    <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" onclick="fetchDataProviders();" data-bs-target="#addModal">Input Data</button>
+                    <a href="./output.html">
+                        <button type="button" class="btn btn-outline-primary btn-lg">Out Data</button>
+                    </a>
+                </div>
+                <!-- FORM ADD --> 
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="data" class="form-label">No Handphone</label>
+                            <input type="number" class="form-control" id="data" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="data-list-provider" class="form-label">Provider</label>
+                            <select class="form-select" aria-label="Default select example" id="data-list-provider"> 
+                                <!-- Data will be displayed here -->
+                              </select>
+                        </div>
+                        <button id='btn-save' type="button" class="btn btn-primary" onclick="addData()">Save</button> 
+                        <button id='btn-auto' type="button" class="btn btn-success" onClick="addAutoData(); disableButton()">Auto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+
+        function disableButton() {
+            var auto = document.getElementById('btn-auto');
+            auto.disabled = true;
+            auto.innerText = 'Processing...'
+
+            var save = document.getElementById('btn-save');
+            save.disabled = true;
+        }  
+
+        //ENDPOINT URL 
+        const apiUrl = 'http://localhost:9670/go-jti/api/v1'; // Replace with your API URL
+ 
+        // function get data providers
+        function fetchDataProviders() {
+            // Fetch data from the API using the saved token
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                alert("Token not found. Please log in.");
+                window.location = "./index.html";
+                return;
+            }
+
+            fetch(`${apiUrl}/providers`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {   
+                    displayDataProviders(data.data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        //function set data ke tabel
+        function displayDataProviders(data) { 
+             
+            const dataList = document.getElementById("data-list-provider"); 
+ 
+            data.forEach(item => {  
+                   
+                const row = document.createElement("option");
+                row.innerHTML = `
+                    <option value='${item.id}'>${item.id}-${item.name}</option> 
+                 `;
+                dataList.appendChild(row);
+            });
+               
+        }
+ 
+        // function tambah data melalui api
+        function addData() { 
+            
+            const newDataValue = document.getElementById("data").value;
+            // const newDataProvider = document.getElementById("provider").value;
+
+            // const providerID = {id : parseInt(newDataProvider)};  
+
+            const e = document.getElementById("data-list-provider"); 
+            var text = e.options[e.selectedIndex].text;    
+ 
+            const providerID = {id : parseInt(text.substring(1, 0))};  
+             
+            if (!newDataValue) {
+                alert("Data value is required.");
+                return;
+            } 
+
+            if (!providerID) {
+                alert("Provider value is required.");
+                return;
+            } 
+
+            const newData = {
+                number: newDataValue,
+                provider: providerID
+            };
+             
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                alert("Token not found. Please log in.");
+                window.location = "./index.html";
+                return;
+            }
+
+            // Send add data request to the API with the token
+            fetch(`${apiUrl}/number-phone`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(newData),
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result) {
+                        // Data added successfully 
+                        alert(result.message.English);   
+                        $('#addModal').modal('hide');
+                        // redirect ke page index
+                        window.location = "./output.html";
+                    } else {
+                        alert(result.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+            }); 
+        }
+
+        // function tambah data auto melalui api
+        function addAutoData() {
+            // Fetch data from the API using the saved token
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                alert("Token not found. Please log in.");
+                window.location = "./index.html";
+                return;
+            }
+
+            // Send add data request to the API with the token
+            fetch(`${apiUrl}/auto-number-phones`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }, 
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result) {
+                        // Data added successfully
+                        alert(result.message.English); 
+                        $('#addModal').modal('hide');
+                        // redirect ke page index
+                        window.location = "./output.html";
+                    } else {
+                        alert(result.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                }); 
+        }
+        
+    </script>
+</body>
+
+</html>

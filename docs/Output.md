@@ -3,8 +3,8 @@
 ### GET URL: /number-phones
 * REQUEST
 ```
-curl --location 'http://localhost:9670/go-jti/api/v1/number-phones' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE'
+curl --location 'http://localhost:9670/go-jti/api/v1/number-phones?type=2' \
+--header 'Authorization: Bearer '
 ```
 * RESPONSE
 ```
@@ -37,7 +37,7 @@ curl --location 'http://localhost:9670/go-jti/api/v1/number-phones' \
 * REQUEST
 ```
 curl --location 'http://localhost:9670/go-jti/api/v1/number-phone/1' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE'
+--header 'Authorization: Bearer '
 ```
 * RESPONSE
 ```
@@ -70,7 +70,7 @@ curl --location 'http://localhost:9670/go-jti/api/v1/number-phone/1' \
 ```
 curl --location --request PUT 'http://localhost:9670/go-jti/api/v1/number-phone/1' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE' \
+--header 'Authorization: Bearer ' \
 --data '{
       "number": "081291808448", 
       "provider": {
@@ -101,7 +101,7 @@ curl --location --request PUT 'http://localhost:9670/go-jti/api/v1/number-phone/
 * REQUEST
 ```
 curl --location --request DELETE 'http://localhost:9670/go-jti/api/v1/number-phone/1' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE'
+--header 'Authorization: Bearer '
 ```
 * RESPONSE
 ```
