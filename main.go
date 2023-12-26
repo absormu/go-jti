@@ -13,14 +13,6 @@ import (
 
 func initHandlers(e *echo.Echo) {
 
-	e.GET("/", handler.AuthHandler)
-	e.GET("/auth", handler.ProviderAuthHandler)
-	e.GET("/auth/google/callback", handler.ProviderCallbackAuthHandler)
-
-	e.GET("/input", handler.WebInputHandler)
-	e.GET("/output", handler.WebOutputHandler)
-	e.GET("/token", handler.WebTokenHandler)
-
 	root := e.Group(cm.Config.RootURL)
 	root.POST("/api/v1/login", handler.LoginHandler)
 
