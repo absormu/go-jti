@@ -20,6 +20,10 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+func PingHandler(ctx echo.Context) error {
+	return ctx.String(http.StatusOK, "PONG")
+}
+
 func LoginHandler(c echo.Context) (e error) {
 	logger := md.GetLogger(c)
 	logger.Info("handler: LoginHandler")
