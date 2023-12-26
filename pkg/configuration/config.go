@@ -25,11 +25,11 @@ type Configuration struct {
 	LimitGenerate      int    `default:"25" split_words:"true"`
 	MyKeySecret        string `default:"BackendGoPlatformSecretAbsormu09" split_words:"true"`
 	MyIvSecret         string `default:"SecretAbsormu212" split_words:"true"`
-	IsLocal            bool   `default:"false" split_words:"true"`
+	IsLocal            bool   `default:"true" split_words:"true"`
 	MariaDBAddrDev     string `default:"aws.connect.psdb.cloud" split_words:"true"`
-	MariaDBUserDev     string `default:"xb1bai4uesy0s79ltirn" split_words:"true"`
+	MariaDBUserDev     string `default:"cofyuaxwl6glw069kh3c" split_words:"true"`
 	MariaDBDatabaseDev string `default:"belajar-crud" split_words:"true"`
-	MariaDBPasswordDev string `default:"pscale_pw_sjX9vmpUthHAzdvr2Lr9iMc9ETfVaCr5Dc67ul8xHrr" split_words:"true"`
+	MariaDBPasswordDev string `default:"pscale_pw_LWElMiU9hcsF5IcQWHBAcUw4jqzuwHcAZFeb4Wvm4PD" split_words:"true"`
 }
 
 // Config .
