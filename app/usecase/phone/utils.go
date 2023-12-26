@@ -1,8 +1,10 @@
 package phone
 
 import (
+	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 
 	md "github.com/absormu/go-jti/app/middleware"
 	"github.com/labstack/echo/v4"
@@ -41,22 +43,28 @@ func autoNumberNineDigit(c echo.Context, guid xid.ID) (resultNumber string, resu
 		"guid": guid,
 	}).Info("generate: autoNumberNineDigit")
 
-	uniqNumber := guid.Time().UTC().Unix()
-	resultType = getType(int(uniqNumber))
+	uniqNumber := randomString(8)
+	uniqNumberInt, _ := strconv.Atoi(uniqNumber)
+	resultType = getType(uniqNumberInt)
 
-	var s, res []rune
-	s = []rune(strconv.Itoa(int(uniqNumber)))
-	res = delChar(s, 0)
-
-	s = []rune(res)
-	res = delChar(s, 0)
-
-	resultNumber = string(res)
+	resultNumber = string(uniqNumber)
 
 	logger.WithFields(log.Fields{
 		"number": resultNumber,
-		"lenght": len(string(res)),
+		"lenght": len(uniqNumber),
 	}).Info("result: autoNumberNineDigit")
 
 	return
+}
+
+func randomString(length int) string {
+	var randomizer = rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
+	var letters = []rune("0123456789")
+
+	b := make([]rune, length)
+	for i := range b {
+		b[i] = letters[randomizer.Intn(len(letters))]
+	}
+
+	return string(b)
 }
