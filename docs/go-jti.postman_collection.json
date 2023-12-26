@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "ad5badda-bb7a-4279-95da-027b524d6547",
+		"_postman_id": "49237f9b-6d11-49d9-8174-b4657a2c7d6d",
 		"name": "go-jti",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "7150072"
+		"_exporter_id": "7150072",
+		"_collection_link": "https://www.postman.com/interstellar-sunset-706060/workspace/go-jti/collection/7150072-49237f9b-6d11-49d9-8174-b4657a2c7d6d?action=share&source=collection_link&creator=7150072"
 	},
 	"item": [
 		{
@@ -17,7 +18,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"value": "{{AUTH_TOKEN}}",
 									"type": "string"
 								}
 							]
@@ -25,17 +26,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9670/go-jti/api/v1/number-phones",
-							"protocol": "http",
+							"raw": "{{API_URL}}/go-jti/api/v1/number-phones?type=1",
 							"host": [
-								"localhost"
+								"{{API_URL}}"
 							],
-							"port": "9670",
 							"path": [
 								"go-jti",
 								"api",
 								"v1",
 								"number-phones"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -49,7 +54,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzNTIxMzM1LCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY200NWxkdTNudDRnc281bmdjMWciLCJ1c2VyX2lkIjoxfQ.U4k4pcoWbj_JW4iSWrh5GFQR1YkU5mkFDJUhjQhGujg",
 									"type": "string"
 								}
 							]
@@ -115,7 +120,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzNTIxMzM1LCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY200NWxkdTNudDRnc281bmdjMWciLCJ1c2VyX2lkIjoxfQ.U4k4pcoWbj_JW4iSWrh5GFQR1YkU5mkFDJUhjQhGujg",
 									"type": "string"
 								}
 							]
@@ -124,7 +129,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n      \"number\": \"081291808448\",\r\n      \"type\": 2,\r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
+							"raw": "{\r\n      \"number\": \"081291808441\", \r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,7 +167,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"value": "{{AUTH_TOKEN}}",
 									"type": "string"
 								}
 							]
@@ -194,7 +199,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzAxMjgyLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZnU4bTNudDRsMzY0N2R2Y2ciLCJ1c2VyX2lkIjoxfQ.qWeY-4oy8tZkBUYKsFEp8yOn7FtoiK7s4w6qfeaUu1I",
+									"value": "{{AUTH_TOKEN}}",
 									"type": "string"
 								}
 							]
@@ -226,7 +231,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzMzA0MTgzLCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY20yZ2t0dTNudDRrc2czNjM4azAiLCJ1c2VyX2lkIjoxfQ.UrVXh3VCkRv2_vDvuS0WvY7qgrwqVDaqimxN9xtyeyE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFic29yYWx2b3JkMDdAZ21haWwuY29tIiwiZXhwIjoxNzAzNTIxMzM1LCJuYW1lIjoiTXVoYW1hZCBVbGlsIEFic29yIiwidWlkIjoiY200NWxkdTNudDRnc281bmdjMWciLCJ1c2VyX2lkIjoxfQ.U4k4pcoWbj_JW4iSWrh5GFQR1YkU5mkFDJUhjQhGujg",
 									"type": "string"
 								}
 							]
@@ -235,7 +240,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n      \"number\": \"081291808445\", \r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
+							"raw": "{\r\n      \"number\": \"081281108442\", \r\n      \"provider\": {\r\n            \"id\": 1\r\n      }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,12 +268,37 @@
 		},
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let token = jsonData.data.access_token;\r",
+							"pm.environment.set('AUTH_TOKEN', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"absoralvord07@gmail.com\",\n    \"password\": \"meraihmimpi\"\n}\n",
+					"raw": "{\n    \"email\": \"absoralvord07@gmail.com\",\n    \"password\": \"meraihmimpi\"\n} ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -276,12 +306,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9670/go-jti/api/v1/login",
-					"protocol": "http",
+					"raw": "{{API_URL}}/go-jti/api/v1/login",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
-					"port": "9670",
 					"path": [
 						"go-jti",
 						"api",
@@ -293,13 +321,16 @@
 			"response": []
 		},
 		{
-			"name": "Signup",
+			"name": "Auth",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"PT. Absor Indonesia\",\n     \"city\": {\n        \"id\": 6\n    },\n    \"email\": \"absor@gmail.com\",\n    \"password\": \"@bs0R212\",\n    \"telephone\": \"0217465768\",\n    \"address\": \"Bandung\"\n}",
+					"raw": "{\n    \"email\": \"absoralvord07@gmail.com\",\n    \"password\": \"meraihmimpi\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -307,15 +338,41 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9670/go-auth/signup",
+					"raw": "http://localhost:9670/go-jti/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9670",
 					"path": [
-						"go-auth",
-						"signup"
+						"go-jti",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetToken",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/token?email=absoralvord07@gmail.com",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "absoralvord07@gmail.com"
+						}
 					]
 				}
 			},

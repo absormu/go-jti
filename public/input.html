@@ -7,23 +7,30 @@
     <title>Home Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bulma css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
 </head>
 
 <body>
 
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h3 class="text-center mb-4">Home Page</h3>
-                <!-- FORM ADD -->
-                <div class="text-center"> 
-                    <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" onclick="fetchDataProviders();" data-bs-target="#addModal">Input Data</button>
-                    <a href="./output.html">
-                        <button type="button" class="btn btn-outline-primary btn-lg">Out Data</button>
-                    </a>
-                </div>
-                <!-- FORM ADD --> 
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h3 class="text-center mb-4">Apps Phone Numbers</h3>
+                    <!-- FORM ADD -->
+                    <div class="text-center"> 
+                        <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" onclick="fetchDataProviders();" data-bs-target="#addModal"><span class="fa fa-keyboard-o"></span> Input Data</button>
+                        <a href="/output">
+                            <button type="button" class="btn btn-outline-primary btn-lg"><span class="fa fa-address-book"></span> Out Data</button>
+                        </a>
+                        <a href="/">
+                            <button type="button" class="btn btn-outline-danger btn-lg" onclick="tempTokens();"><span class="fa fa-sign-out"></span>LogOut</button> 
+                        </a>
+                    </div>
+                    <!-- FORM ADD --> 
 
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +89,7 @@
             
             if (!token) {
                 alert("Token not found. Please log in.");
-                window.location = "./index.html";
+                window.location = "/";
                 return;
             }
 
@@ -148,7 +155,7 @@
 
             if (!token) {
                 alert("Token not found. Please log in.");
-                window.location = "./index.html";
+                window.location = "/";
                 return;
             }
 
@@ -168,7 +175,7 @@
                         alert(result.message.English);   
                         $('#addModal').modal('hide');
                         // redirect ke page index
-                        window.location = "./output.html";
+                        window.location = "/output";
                     } else {
                         alert(result.message);
                     }
@@ -185,7 +192,7 @@
             
             if (!token) {
                 alert("Token not found. Please log in.");
-                window.location = "./index.html";
+                window.location = "/";
                 return;
             }
 
@@ -204,7 +211,7 @@
                         alert(result.message.English); 
                         $('#addModal').modal('hide');
                         // redirect ke page index
-                        window.location = "./output.html";
+                        window.location = "/output";
                     } else {
                         alert(result.message);
                     }

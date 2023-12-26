@@ -15,7 +15,7 @@ type OAuthMessage struct {
 }
 
 type ExtractToken struct {
-	UserID int64  `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty"`
 	Name   string `json:"name,omitempty"`
 	Email  string `json:"email,omitempty"`
 }
