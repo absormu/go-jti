@@ -42,7 +42,7 @@ func ExtractToken(c echo.Context) (extractToken entity.ExtractToken, e error) {
 
 	extractToken = entity.ExtractToken{
 		Name:   tokenMap["name"].(string),
-		UserID: int64(tokenMap["user_id"].(float64)),
+		UserID: tokenMap["user_id"].(string),
 		Email:  tokenMap["email"].(string),
 	}
 

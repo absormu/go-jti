@@ -3,7 +3,7 @@
 IMPLEMENTASI
 ------------
 
-- [ ] Gmail (Sign In With Google)
+- [x] Gmail (Sign In With Google)
 - [x] Metode ENCRYPT/DECRYPT
 - [ ] WEB SOCKET
 - [ ] POSTGRE SQL 
@@ -13,7 +13,7 @@ INTRODUCTION
 * [LINK GITHUB](https://www.github.com/absormu/go-jti)
 * DOCUMENTATION API postman collection (folder /docs/go-jti.postman_collection.json)
 * REQUEST & RESPONSE API (folder /docs/Input.md & Output.md)
-* DATABASE (folder /scripts/db_gojti.sql)
+* DATABASE : create database db_gojti, (folder /scripts/db_gojti.sql)
 
 INSTALLATION, CONFIGURATION AND RUNING
 ------------
@@ -21,17 +21,13 @@ INSTALLATION, CONFIGURATION AND RUNING
  * Import database from folder /scripts/db_gojti.sql
  * Config from /pkg/configuration/config.go
  * go build
- * ./go-jti
+ * ./go-jti or ./go-jti.exe
  * Import postman collection FROM /docs/go-jti.postman_collection
   
  TESTING
 ------------
-* authorization (email: absoralvord07@gmail.com, password: meraihmimpi)
+* http://localhost:9670/ & sign google account
 
- DEMO ONLINE
-------------
-* authorization (email: absoralvord07@gmail.com, password: meraihmimpi)
-* [LINK](https://www.absormu.com/)
 
 ## POSTGRES
 ```

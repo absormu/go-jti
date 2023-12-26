@@ -1,0 +1,74 @@
+<!-- templates/success.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bulma css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+      <style>
+          body        { padding-top:70px; }
+      </style>
+  </head>
+
+  <body>
+     
+    <div class="container mt-5">
+      <div class="jumbotron">
+          <div class="row">
+              <div class="col-md-6 offset-md-3">
+                  <h3 class="text-center mb-4">Welcome, {{.Name}} <span class="fa fa-rocket text-success"></span></h3>
+                  <p class="text-center"><img src="{{.AvatarURL}}" alt="profile"></p> <br>  
+                  <input type="text" class="form-control text-center text-primary mb-3 border-0" id="email_user" value="{{.Email}}" disabled>
+                  <!-- FORM ADD -->
+                  <div class="text-center">  
+                    <a href="/input">
+                      <button type="button" class="btn btn-outline-success btn-lg" onclick="tempTokens();"><span class="fa fa-keyboard-o"></span> Input Data </button>  
+                    </a>
+                    
+                    <a href="/output">
+                      <button type="button" class="btn btn-outline-primary btn-lg" onclick="tempTokens();"><span class="fa fa-address-book"></span> Out Data </button> 
+                    </a>
+                    <a href="/">
+                      <button type="button" class="btn btn-outline-danger btn-lg" onclick="tempTokens();"><span class="fa fa-sign-out"></span> LogOut </button> 
+                    </a> 
+                  </div>
+                  <!-- FORM ADD --> 
+
+                </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+
+        //ENDPOINT URL 
+        const apiUrl = 'http://localhost:9670/token';  
+
+        function tempTokens() {
+          const emailUser = document.getElementById("email_user").value; 
+
+          fetch(`${apiUrl}?email=${emailUser}`, { 
+              
+          }).then(response => response.json())
+            .then(data => {  
+              
+              localStorage.removeItem('token');
+              // Save the token to localStorage for future requests 
+              localStorage.setItem('token', data.data); 
+            }).catch((error) => {
+                    console.error('Error:', error);
+            });  
+        } 
+
+    </script>
+  </body>
+</html>
