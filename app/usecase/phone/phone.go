@@ -201,8 +201,13 @@ func GetNumberPhones(c echo.Context) (e error) {
 	logger := md.GetLogger(c)
 	logger.Info("usecase: GetNumberPhones")
 
+	var typeNumber string
+	if c.QueryParam("type") != "" {
+		typeNumber = c.QueryParam("type")
+	}
+
 	var results []entity.PhoneData
-	if results, e = repoPhone.GetNumberPhones(c); e != nil {
+	if results, e = repoPhone.GetNumberPhones(c, typeNumber); e != nil {
 		logger.WithField("error", e.Error()).Error("Catch error failure query GetNumberPhones")
 		e = resp.CustomError(c, http.StatusInternalServerError, sdk.ERR_DATABASE,
 			lg.Language{Bahasa: nil, English: "Failure query get GetNumberPhones"}, nil, nil)

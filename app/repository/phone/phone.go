@@ -95,9 +95,9 @@ func CreateNumberPhone(c echo.Context, params map[string]interface{}) (numberPho
 	return
 }
 
-func GetNumberPhones(c echo.Context) (results []entity.PhoneData, e error) {
+func GetNumberPhones(c echo.Context, typeNumber string) (results []entity.PhoneData, e error) {
 	logger := md.GetLogger(c)
-	logger.Info("repository: GetNumberPhones")
+	logger.WithField("request", typeNumber).Info("repository: GetNumberPhones")
 
 	db := db.MariaDBInit()
 	defer db.Close()
@@ -106,8 +106,16 @@ func GetNumberPhones(c echo.Context) (results []entity.PhoneData, e error) {
 		"p.id, p.code, p.name, " +
 		"pn.created_at, pn.created_by, IFNULL(pn.modified_at, ''), IFNULL(pn.modified_by, ''), pn.is_deleted " +
 		"FROM phone_number AS pn " +
-		"LEFT JOIN provider AS p ON pn.provider_id  = p.id " +
-		"WHERE pn.is_deleted = 0 ORDER BY pn.id DESC LIMIT " + strconv.Itoa(cm.Config.LimitQuery) + ""
+		"LEFT JOIN provider AS p ON pn.provider_id  = p.id "
+
+	var condition string
+	if typeNumber != "" {
+		condition += "WHERE pn.is_deleted = 0 AND pn.type = " + typeNumber + " ORDER BY pn.id DESC LIMIT " + strconv.Itoa(cm.Config.LimitQuery) + ""
+	} else {
+		condition += "WHERE pn.is_deleted = 0 ORDER BY pn.id DESC LIMIT " + strconv.Itoa(cm.Config.LimitQuery) + ""
+	}
+
+	query += condition
 
 	logger.WithFields(logrus.Fields{"query": query}).Info("repository: GetNumberPhones-query")
 
