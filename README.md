@@ -32,12 +32,6 @@ INSTALLATION, CONFIGURATION AND RUNING
 * http://localhost:9670/ & sign google account
 
 
-## POSTGRES
-```
-    https://api.elephantsql.com/console/3ff65ee8-6ede-4d41-a458-aedcd5f5c1e4/details
-    postgres://atdlgvno:iOI0Wu5FczrsFfOEu-xaWTZ7lXLP4l1D@rain.db.elephantsql.com/atdlgvno
-```
-
 ## DESIGN FLOW
 ![Design Flow](/public/images/Design%20Flow.png) 
 
