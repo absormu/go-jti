@@ -115,10 +115,13 @@
             fetchDataGenap();
         }; 
 
+        function fetchData() {
+            fetchDataGanjil();
+            fetchDataGenap();
+        }
+
         // refresh time 5 second
-        // setTimeout(function(){
-        //     window.location.reload(1);
-        // }, 5000);
+        setInterval(fetchData, 5000);
 
         //ENDPOINT URL 
         const apiUrl = 'http://localhost:9670/go-jti/api/v1'; // Replace with your API URL
